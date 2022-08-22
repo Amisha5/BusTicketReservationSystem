@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta charset="utf-8"/>
+    <title></title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .chat-bar-collapsible {
+            position: fixed;
+            bottom: 0;
+            right: 50px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .collapsible {
+            background-color: rgb(51, 54, 74);
+            /*   background-color: rgb(240, 56, 5);*/
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+            width: 350px;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border-radius: 10px 10px 0px 0px;
+            border: 3px solid white;
+            border-bottom: none;
+        }
+
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .full-chat-block {
+            width: 350px;
+            background: white;
+            text-align: center;
+            overflow: auto;
+            /*  scrollbar-width: none;*/
+            height: max-content;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .outer-container {
+            min-height: 400px;
+            bottom: 0%;
+            position: relative;
+        }
+
+        .chat-container {
+            max-height: 500px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            scroll-behavior: smooth;
+            hyphens: auto;
+        }
+
+            .chat-container::-webkit-scrollbar {
+                display: none;
+            }
+
+        .chat-bar-input-block {
+            display: flex;
+            float: left;
+            box-sizing: border-box;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            background-color: rgb(235, 235, 235);
+            border-radius: 10px 10px 0px 0px;
+            padding: 10px 0px 10px 10px;
+        }
+
+        .chat-bar-icons {
+            display: flex;
+            justify-content: space-evenly;
+            box-sizing: border-box;
+            width: 25%;
+            float: right;
+            font-size: 20px;
+        }
+
+        #chat-icon:hover {
+            opacity: .7;
+        }
+
+        /* Chat bubbles */
+
+        #userInput {
+            width: 110%;
+        }
+
+        .input-box {
+            float: left;
+            border: none;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            color: #000;
+            background-color: white;
+            outline: none
+        }
+
+        .userText {
+            color: white;
+            font-family: Helvetica;
+            font-size: 16px;
+            font-weight: normal;
+            text-align: right;
+            clear: both;
+        }
+
+            .userText span {
+                line-height: 1.5em;
+                display: inline-block;
+                background: #5ca6fa;
+                padding: 10px;
+                border-radius: 8px;
+                border-bottom-right-radius: 2px;
+                max-width: 80%;
+                margin-right: 10px;
+                animation: floatup .5s forwards
+            }
+
+        .botText {
+            color: #000;
+            font-family: Helvetica;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: left;
+        }
+
+            .botText span {
+                line-height: 1.5em;
+                display: inline-block;
+                background: #e0e0e0;
+                padding: 10px;
+                border-radius: 8px;
+                border-bottom-left-radius: 2px;
+                max-width: 80%;
+                margin-left: 10px;
+                animation: floatup .5s forwards
+            }
+
+        @keyframes floatup {
+            from {
+                transform: translateY(14px);
+                opacity: .0;
+            }
+
+            to {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width:600px) {
+            .full-chat-block {
+                width: 100%;
+                border-radius: 0px;
+            }
+
+            .chat-bar-collapsible {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+            }
+
+            .collapsible {
+                width: 100%;
+                border: 0px;
+                border-top: 3px solid white;
+                border-radius: 0px;
+            }
+
+            #select1 {
+                width: 150%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-bar-collapsible">
+        <button id="chat-button" type="button" class="collapsible">
+            Chat with Us!
+            <i id="chat-icon" style="color: #fff;" class="fa fa-comments-o"></i>
+        </button>
+
+        <div class="content">
+            <div class="full-chat-block">
+                <!--Message Container-->
+                <div class="outer-container">
+                    <div class="chat-container">
+                        <!--Messages-->
+                        <div id="chatbox">
+                            <h5 id="chat-timestamp"></h5>
+                            <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                        </div>
+
+                        <!--User Input box-->
+                        <div class="chat-bar-input-block">
+                            <div id="userInput">
+                                <!--<input type="text" id="textInput" class="input-box" name="msg" placeholder="Tap 'Enter' to send a message" />-->
+                                <!--<label for="select1">Choose your browser from the list:</label>-->
+                                <input list="select" name="select1" id="select1" class="form-control">
+                                <datalist id="select">
+                                    <option></option>
+                                </datalist>
+                                <p></p>
+                            </div>
+
+                            <div class="chat-bar-icons">
+                                <i id="chat-icon" style="color: #333;" class="fa fa-send-o "
+                                   onclick="sendButton()"></i>
+                            </div>
+                        </div>
+
+                        <div id="chat-bar-bottom">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Collapsible
+        var coll = document.getElementsByClassName("collapsible");
+
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+
+                var content = this.nextElementSibling;
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+
+        function getTime() {
+            let today = new Date();
+            hours = today.getHours();
+            minutes = today.getMinutes();
+
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+
+            let time = hours + ":" + minutes;
+            return time;
+        }
+
+        function firstBotMessage() {
+
+            let firstMessage = "Hi! I'm George."+'<br>'+ " Please select your question.."
+            document.getElementById("botStarterMessage").innerHTML = '<p class="botText"><span>' + firstMessage + '</span></p>';
+
+            let time = getTime();
+
+            $("#chat-timestamp").append(time);
+            document.getElementById("userInput").scrollIntoView(false);
+        }
+
+        firstBotMessage();
+
+        function getHardResponse(userText) {
+
+            let botResponse = getBotResponse(userText);
+            let botHtml = '<p class="botText"><span>' + botResponse + '</span></p>';
+            $("#chatbox").append(botHtml);
+            document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+        }
+
+        function getResponse() {
+            let userText = $("#select1").val();
+
+            if (userText == "") {
+                userText = "I love this platform";
+            }
+
+            let userHtml = '<p class="userText"><span>' + userText + '</span></p>';
+
+            $("#select").val("");
+            $("#chatbox").append(userHtml);
+            document.getElementById("chat-bar-bottom").scrollIntoView(true);
+
+            setTimeout(() => {
+                getHardResponse(userText);
+            },1000)
+        }
+        function sendButton() {
+            getResponse();
+        }
+
+        $("#select").keypress(function (e) {
+            if (e.which == 13) {
+                getResponse();
+            }
+        })
+
+        const QuestionList = [
+            "How to Book Ticket??",
+            "What are the comforts provided inside the bus??",
+            "Gallery",
+        ];
+        for (let i = 0; i < QuestionList.length; i++) {
+            let quesName = QuestionList[i];
+            let optionElement = document.createElement("option");
+            optionElement.value = quesName;
+            optionElement.textContent = quesName;
+
+            select.appendChild(optionElement);
+        }
+
+        input = document.getElementById("select");
+        function getBotResponse(input) {
+
+            if (input == QuestionList[0]) {
+                return "Simple Steps to book your ticket.." +'<br>'+ '<a href="#easy">Book Your Ticket with Ease!</a>';
+            }
+            else if (input == QuestionList[1]) {
+                return ""+'<br>'+'<a href="#features">Amenities</a>';
+            }
+            else if (input == QuestionList[2]) {
+                return "gallery";
+            }
+            else {
+                return "try asking something else";
+            }
+        }
+
+        //function Validate(event, input) {
+        //    event.preventDefault();
+        //    //remaining function logic goes here
+        //}
+
+    </script>
+</body>
+</html>

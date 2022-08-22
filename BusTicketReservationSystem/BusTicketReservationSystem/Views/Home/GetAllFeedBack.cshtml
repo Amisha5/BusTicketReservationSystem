@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BusTicketReservationSystem.DomainModel.Models.FeedBack>
+
+@{
+    ViewBag.Title = "GetAllFeedBack";
+}
+
+<h2>All Feedbacks</h2>
+
+
+<body class="container" style="margin-top:60px;">
+   
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BusDetails.BusName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HowSatisfied)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th style="width:15%;">
+                @Html.DisplayNameFor(model => model.IsLiked)
+            </th>
+            @*<th></th>*@
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusDetails.BusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HowSatisfied)
+                </td>
+
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Rating)*@
+                    <span class="badge badge-success material-icons-outlined" style="font-size: 16px; background-color: #0fb156;">@item.Rating<i class="material-icons" style="font-size: 16px;">&#xe885;</i></span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @if (item.IsLiked.Equals("Like"))
+                    {
+                        <img class="col-md-8" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl5DKFxcjQVp_Yju7Yznd8orvFPeetTikm2A&usqp=CAU">
+
+                    }
+                    @if (item.IsLiked.Equals("Dislike"))
+                    {
+                        <img class="col-md-8" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx0ORyreNAbR7a5b2_1kdrhlFmzSmvgbLF0g&usqp=CAU" />
+
+                    }
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+</body>
+

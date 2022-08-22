@@ -1,0 +1,170 @@
+﻿@model IEnumerable<BusTicketReservationSystem.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+    .bodyRoleDesign {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        background: url(https://thumbs.dreamstime.com/b/wood-background-wallpaper-hd-123273980.jpg);
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-size: cover;
+        /*    backdrop-filter: blur(3px);*/
+    }
+
+    .textWhite {
+        color: white;
+        font-size: 17px;
+    }
+
+    .textWhiteh3 {
+        color: white;
+     
+        font-weight: bold;
+    }
+    .tableBgColor
+    {
+        background-color:white;
+    }
+</style>
+<body class="bodyAlign container bodyRoleDesign">
+    <h2 class="text-center textWhiteh3">User Table</h2>
+    <br />
+    @{
+        if (User.IsInRole("Admin"))
+        {
+            <p>
+                @Html.ActionLink("Create New User", "Create", "Role", new { @class = "btn btn-success" })
+            </p>
+        }
+    }
+
+    <table class="table table-responsive tableBgColor">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRole)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            if (item.UserRole == "User")
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserRole)
+                    </td>
+
+                    @{
+                        if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                @Html.ActionLink("Make User as Admin", "Make_Admin", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Delete User", "DeleteRecord", new { id = item.Id }, new { @class = "btn btn-danger" })
+                            </td>
+                        }
+                        else
+                    {
+                        <td></td>
+                    }
+                    }
+
+
+
+                </tr>
+            }
+
+
+        }
+
+    </table>
+    <br />
+    <h2 class="text-center textWhiteh3">Admin Table</h2>
+    <br />
+    @{
+        if (User.IsInRole("SuperAdmin"))
+        {
+            <p>
+                @Html.ActionLink("Create New Admin", "CreateNewAdmin", "Role", new { @class = "btn btn-success" })
+            </p>
+        }
+    }
+
+    @{
+
+
+        <table class="table tableBgColor">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserRole)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.UserRole == "Admin")
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserRole)
+                        </td>
+                        @{
+                            if (User.IsInRole("SuperAdmin"))
+                            {
+                                <td>
+
+                                    @Html.ActionLink("Make Admin as User", "Make_Customer", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete Admin", "DeleteRecord", new { id = item.Id }, new { @class = "btn btn-danger" })
+                                </td>
+                            }
+                        }
+
+
+                    </tr>
+
+                }
+            }
+
+        </table>
+    }
+</body>

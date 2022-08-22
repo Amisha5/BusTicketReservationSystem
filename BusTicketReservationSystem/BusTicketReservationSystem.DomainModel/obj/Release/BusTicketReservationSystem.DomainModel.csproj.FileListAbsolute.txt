@@ -1,0 +1,6 @@
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.DomainModel\bin\Release\BusTicketReservationSystem.DomainModel.dll
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.DomainModel\bin\Release\BusTicketReservationSystem.DomainModel.pdb
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.DomainModel\obj\Release\BusTicketReservationSystem.DomainModel.csproj.AssemblyReference.cache
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.DomainModel\obj\Release\BusTicketReservationSystem.DomainModel.csproj.CoreCompileInputs.cache
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.DomainModel\obj\Release\BusTicketReservationSystem.DomainModel.dll
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.DomainModel\obj\Release\BusTicketReservationSystem.DomainModel.pdb

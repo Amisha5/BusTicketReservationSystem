@@ -1,0 +1,641 @@
+﻿@model BusTicketReservationSystem.DomainModel.Models.BookedSeat
+@{
+    ViewData["Title"] = "BookedSeatsData";
+}
+
+<html>
+<head>
+  
+    <link rel="stylesheet" href="~/Content/BookSeat.css" />
+    <style>
+        .bookSeatDesign {
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 50px;
+            background: url(https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80%22);
+            background-repeat: no-repeat;
+            object-fit: cover;
+            background-size: cover;
+            /*    backdrop-filter: blur(3px);*/
+        }
+        #border {
+            border: 1px solid black;
+            margin-left: 70px;
+            width: 300px;
+            float: left;
+            height: 545px;
+            margin-top: 30px;
+            background-color: white;
+            border-radius:13px;
+        }
+    </style>
+
+</head>
+<body class="container bookSeatDesign">
+
+    <div id="border">
+
+        <form id="form" action="~/BusDetail/Book/@ViewBag.BusId" onsubmit="myValidation();" method="post">
+
+
+            <input type="text" name="BusId" value="@Model.BusId" hidden />
+            <input type="text" name="SeatId" value="@Model.SeatId" hidden />
+
+            <br />
+            <br />
+
+            @if (Model.A1 > 1)
+            {
+                <input type="checkbox" id="A1" name="A1" value="@Model.BusDetail.Price" hidden checked readonly />
+                <input type="checkbox" id="A1" disabled checked />
+                <label class="text-danger">A1</label>
+            }
+            else if (Model.A1 == 1)
+            {
+                <input type="checkbox" id="A1" name="A1" value=1 hidden checked readonly />
+                <input type="checkbox" id="A1" disabled checked />
+                <label class="text-danger">A1</label>
+            }
+
+            else if (Model.A1 == 0)
+            {
+                <input type="checkbox" id="A1" name="A1" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A1</label>
+            }
+            @if (Model.A2 > 1)
+            {
+                <input type="checkbox" id="A2" name="A2" value="@Model.BusDetail.Price" hidden checked readonly />
+                <input type="checkbox" id="A2" disabled checked />
+                <label class="text-danger">A2</label>
+            }
+            else if (Model.A2 == 1)
+            {
+                <input type="checkbox" id="A2" name="A2" value=1 hidden checked readonly />
+                <input type="checkbox" id="A2" disabled checked />
+                <label class="text-danger">A2</label>
+            }
+            else if (Model.A2 == 0)
+            {
+                <input type="checkbox" id="A2" name="A2" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A2</label>
+            }
+            @if (Model.A3 > 1)
+            {
+                <input type="checkbox" id="A3" name="A3" value="@Model.BusDetail.Price" hidden checked readonly />
+                <input type="checkbox" id="A3" disabled checked />
+                <label class="text-danger">A3</label>
+            }
+            else if (Model.A3 == 1)
+            {
+                <input type="checkbox" id="A3" name="A3" value=1 hidden checked readonly />
+                <input type="checkbox" id="A3" disabled checked />
+                <label class="text-danger">A3</label>
+            }
+            else if (Model.A3 == 0)
+            {
+                <input type="checkbox" id="A3" name="A3" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A3</label>
+            }
+            <br />
+            @if (Model.A4 > 1)
+            {
+                <input type="checkbox" id="A4" name="A4" value="@Model.BusDetail.Price" hidden checked readonly />
+                <input type="checkbox" id="A4" disabled checked />
+                <label class="text-danger">A4</label>
+            }
+            else if (Model.A4 == 1)
+            {
+                <input type="checkbox" id="A4" name="A4" value=1 hidden checked readonly />
+                <input type="checkbox" id="A4" disabled checked />
+                <label class="text-danger">A4</label>
+            }
+            else if (Model.A4 == 0)
+            {
+                <input type="checkbox" id="A4" name="A4" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A4</label>
+            }
+            @if (Model.A5 > 1)
+            {
+                <input type="checkbox" id="A5" name="A5" value="@Model.BusDetail.Price" hidden checked readonly />
+                <input type="checkbox" id="A5" disabled checked />
+                <label class="text-danger">A5</label>
+            }
+            else if (Model.A5 == 1)
+            {
+                <input type="checkbox" id="A5" name="A5" value=1 hidden checked readonly />
+                <input type="checkbox" id="A5" disabled checked />
+                <label class="text-danger">A5</label>
+            }
+            else if (Model.A5 == 0)
+            {
+                <input type="checkbox" id="A5" name="A5" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A5</label>
+            }
+            @if (Model.A6 > 1)
+            {
+                <input type="checkbox" id="A6" name="A6" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="A6" disabled checked />
+                <label class="text-danger">A6</label>
+            }
+            else if (Model.A6 == 1)
+            {
+                <input type="checkbox" id="A6" name="A6" value=1 hidden checked readonly />
+                <input type="checkbox" id="A6" disabled checked />
+                <label class="text-danger">A6</label>
+            }
+            else if (Model.A6 == 0)
+            {
+                <input type="checkbox" id="A6" name="A6" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A6</label>
+            }
+            <br />
+            @if (Model.A7 > 1)
+            {
+                <input type="checkbox" id="A7" name="A7" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="A7" disabled checked />
+                <label class="text-danger">A7</label>
+            }
+            else if (Model.A7 == 1)
+            {
+                <input type="checkbox" id="A7" name="A7" value=1 hidden checked readonly />
+                <input type="checkbox" id="A7" disabled checked />
+                <label class="text-danger">A7</label>
+            }
+            else if (Model.A7 == 0)
+            {
+                <input type="checkbox" id="A7" name="A7" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A7</label>
+            }
+            @if (Model.A8 > 1)
+            {
+                <input type="checkbox" id="A8" name="A8" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="A8" disabled checked />
+                <label class="text-danger">A8</label>
+            }
+            else if (Model.A8 == 1)
+            {
+                <input type="checkbox" id="A8" name="A8" value=1 hidden checked readonly />
+                <input type="checkbox" id="A8" disabled checked />
+                <label class="text-danger">A8</label>
+            }
+            else if (Model.A8 == 0)
+            {
+                <input type="checkbox" id="A8" name="A8" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A8</label>
+            }
+            @if (Model.A9 > 1)
+            {
+                <input type="checkbox" id="A9" name="A9" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="A9" disabled checked />
+                <label class="text-danger">A9</label>
+            }
+            else if (Model.A9 == 1)
+            {
+                <input type="checkbox" id="A9" name="A9" value=1 hidden checked readonly />
+                <input type="checkbox" id="A9" disabled checked />
+                <label class="text-danger">A9</label>
+            }
+            else if (Model.A9 == 0)
+            {
+                <input type="checkbox" id="A9" name="A9" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A9</label>
+            }
+            <br />
+            @if (Model.A10 > 1)
+            {
+                <input type="checkbox" id="A10" name="A10" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="A10" disabled checked />
+                <label class="text-danger">A10</label>
+            }
+            else if (Model.A10 == 1)
+            {
+                <input type="checkbox" id="A10" name="A10" value=1 hidden checked readonly />
+                <input type="checkbox" id="A10" disabled checked />
+                <label class="text-danger">A10</label>
+            }
+            else if (Model.A10 == 0)
+            {
+                <input type="checkbox" id="A10" name="A10" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">A10</label>
+            }
+
+            @if (Model.B1 > 1)
+            {
+                <input type="checkbox" id="B1" name="B1" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B1" disabled checked />
+                <label class="text-danger">B1</label>
+            }
+            else if (Model.B1 == 1)
+            {
+                <input type="checkbox" id="B1" name="B1" value=1 hidden checked readonly />
+                <input type="checkbox" id="B1" disabled checked />
+                <label class="text-danger">B1</label>
+            }
+            else if (Model.B1 == 0)
+            {
+                <input type="checkbox" id="B1" name="B1" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B1</label>
+            }
+            @if (Model.B2 > 1)
+            {
+                <input type="checkbox" id="B2" name="B2" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B2" disabled checked />
+                <label class="text-danger">B2</label>
+            }
+            else if (Model.B2 == 1)
+            {
+                <input type="checkbox" id="B2" name="B2" value=1 hidden checked readonly />
+                <input type="checkbox" id="B2" disabled checked />
+                <label class="text-danger">B2</label>
+            }
+            else if (Model.B2 == 0)
+            {
+                <input type="checkbox" id="B2" name="B2" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B2</label>
+            }
+            <br />
+            @if (Model.B3 > 1)
+            {
+                <input type="checkbox" id="B3" name="B3" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B3" disabled checked />
+                <label class="text-danger">B3</label>
+            }
+            else if (Model.B3 == 1)
+            {
+                <input type="checkbox" id="B3" name="B3" value=1 hidden checked readonly />
+                <input type="checkbox" id="B3" disabled checked />
+                <label class="text-danger">B3</label>
+            }
+            else if (Model.B3 == 0)
+            {
+                <input type="checkbox" id="B3" name="B3" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B3</label>
+            }
+            @if (Model.B4 > 1)
+            {
+                <input type="checkbox" id="B4" name="B4" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B4" disabled checked />
+                <label class="text-danger">B4</label>
+            }
+            else if (Model.B4 == 1)
+            {
+                <input type="checkbox" id="B4" name="B4" value=1 hidden checked readonly />
+                <input type="checkbox" id="B4" disabled checked />
+                <label class="text-danger">B4</label>
+            }
+            else if (Model.B4 == 0)
+            {
+                <input type="checkbox" id="B4" name="B4" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B4</label>
+            }
+            @if (Model.B5 > 1)
+            {
+                <input type="checkbox" id="B5" name="B5" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B5" disabled checked />
+                <label class="text-danger">B5</label>
+            }
+            else if (Model.B5 == 1)
+            {
+                <input type="checkbox" id="B5" name="B5" value=1 hidden checked readonly />
+                <input type="checkbox" id="B5" disabled checked />
+                <label class="text-danger">B5</label>
+            }
+            else if (Model.B5 == 0)
+            {
+                <input type="checkbox" id="B5" name="B5" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B5</label>
+            }
+            <br />
+            @if (Model.B6 > 1)
+            {
+                <input type="checkbox" id="B6" name="B6" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B6" disabled checked />
+                <label class="text-danger">B6</label>
+            }
+            else if (Model.B6 == 1)
+            {
+                <input type="checkbox" id="B6" name="B6" value=1 hidden checked readonly />
+                <input type="checkbox" id="B6" disabled checked />
+                <label class="text-danger">B6</label>
+            }
+            else if (Model.B6 == 0)
+            {
+                <input type="checkbox" id="B6" name="B6" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B6</label>
+            }
+            @if (Model.B7 > 1)
+            {
+                <input type="checkbox" id="B7" name="B7" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B7" disabled checked />
+                <label class="text-danger">B7</label>
+            }
+            else if (Model.B7 == 1)
+            {
+                <input type="checkbox" id="B7" name="B7" value=1 hidden checked readonly />
+                <input type="checkbox" id="B7" disabled checked />
+                <label class="text-danger">B7</label>
+            }
+            else if (Model.B7 == 0)
+            {
+                <input type="checkbox" id="B7" name="B7" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B7</label>
+            }
+            @if (Model.B8 > 1)
+            {
+                <input type="checkbox" id="B8" name="B8" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B8" disabled checked />
+                <label class="text-danger">B8</label>
+            }
+            else if (Model.B8 == 1)
+            {
+                <input type="checkbox" id="B8" name="B8" value=1 hidden checked readonly />
+                <input type="checkbox" id="B8" disabled checked />
+                <label class="text-danger">B8</label>
+            }
+            else if (Model.B8 == 0)
+            {
+                <input type="checkbox" id="B8" name="B8" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B8</label>
+            }
+            <br />
+            @if (Model.B9 > 1)
+            {
+                <input type="checkbox" id="B9" name="B9" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B9" disabled checked />
+                <label class="text-danger">B9</label>
+            }
+            else if (Model.B9 == 1)
+            {
+                <input type="checkbox" id="B9" name="B9" value=1 hidden checked readonly />
+                <input type="checkbox" id="B9" disabled checked />
+                <label class="text-danger">B9</label>
+            }
+            else if (Model.B9 == 0)
+            {
+                <input type="checkbox" id="B9" name="B9" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B9</label>
+            }
+            @if (Model.B10 > 1)
+            {
+                <input type="checkbox" id="B10" name="B10" value="@Model.BusDetail.Price" hidden readonly checked />
+                <input type="checkbox" id="B10" disabled checked />
+                <label class="text-danger">B10</label>
+            }
+            else if (Model.B10 == 1)
+            {
+                <input type="checkbox" id="B10" name="B10" value=1 hidden checked readonly />
+                <input type="checkbox" id="B10" disabled checked />
+                <label class="text-danger">B10</label>
+            }
+            else if (Model.B10 == 0)
+            {
+                <input type="checkbox" id="B10" name="B10" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                <label class="text-success">B10</label>
+            }
+
+            @{
+                if (Model.BusDetail.Capacity == BusTicketReservationSystem.DomainModel.Models.Capacity.MaxLoaded || Model.BusDetail.Capacity == BusTicketReservationSystem.DomainModel.Models.Capacity.SemiLoaded)
+                {
+                    if (Model.C1 > 1)
+                    {
+                        <input type="checkbox" id="C1" name="C1" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C1" disabled checked />
+                        <label class="text-danger">C1</label>
+                    }
+                    else if (Model.C1 == 1)
+                    {
+                        <input type="checkbox" id="C1" name="C1" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C1" disabled checked />
+                        <label class="text-danger">C1</label>
+                    }
+                    else if (Model.C1 == 0)
+                    {
+                        <input type="checkbox" id="C1" name="C1" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C1</label>
+                    }
+                    <br />
+                    if (Model.C2 > 1)
+                    {
+                        <input type="checkbox" id="C2" name="C2" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C2" disabled checked />
+                        <label class="text-danger">C2</label>
+                    }
+                    else if (Model.C2 == 1)
+                    {
+                        <input type="checkbox" id="C2" name="C2" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C2" disabled checked />
+                        <label class="text-danger">C2</label>
+                    }
+                    else if (Model.C2 == 0)
+                    {
+                        <input type="checkbox" id="C2" name="C2" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C2</label>
+                    }
+                    if (Model.C3 > 1)
+                    {
+                        <input type="checkbox" id="C3" name="C3" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C3" disabled checked />
+                        <label class="text-danger">C3</label>
+                    }
+                    else if (Model.C3 == 1)
+                    {
+                        <input type="checkbox" id="C3" name="C3" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C3" disabled checked />
+                        <label class="text-danger">C3</label>
+                    }
+                    else if (Model.C3 == 0)
+                    {
+                        <input type="checkbox" id="C3" name="C3" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C3</label>
+                    }
+                    if (Model.C4 > 1)
+                    {
+                        <input type="checkbox" id="C4" name="C4" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C4" disabled checked />
+                        <label class="text-danger">C4</label>
+                    }
+                    else if (Model.C4 == 1)
+                    {
+                        <input type="checkbox" id="C4" name="C4" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C4" disabled checked />
+                        <label class="text-danger">C4</label>
+                    }
+                    else if (Model.C4 == 0)
+                    {
+                        <input type="checkbox" id="C4" name="C4" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C4</label>
+                    }
+                    <br />
+                    if (Model.C5 > 1)
+                    {
+                        <input type="checkbox" id="C5" name="C5" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C5" disabled checked />
+                        <label class="text-danger">C5</label>
+                    }
+                    else if (Model.C5 == 1)
+                    {
+                        <input type="checkbox" id="C5" name="C5" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C5" disabled checked />
+                        <label class="text-danger">C5</label>
+                    }
+                    else if (Model.C5 == 0)
+                    {
+                        <input type="checkbox" id="C5" name="C5" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C5</label>
+                    }
+                }
+
+
+                if (Model.BusDetail.Capacity == BusTicketReservationSystem.DomainModel.Models.Capacity.MaxLoaded)
+                {
+                    if (Model.C6 > 1)
+                    {
+                        <input type="checkbox" id="C6" name="C6" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C6" disabled checked />
+                        <label class="text-danger">C6</label>
+                    }
+                    else if (Model.C6 == 1)
+                    {
+                        <input type="checkbox" id="C6" name="C6" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C6" disabled checked />
+                        <label class="text-danger">C6</label>
+                    }
+                    else if (Model.C6 == 0)
+                    {
+                        <input type="checkbox" id="C6" name="C6" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C6</label>
+                    }
+                    if (Model.C7 > 1)
+                    {
+                        <input type="checkbox" id="C7" name="C7" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C7" disabled checked />
+                        <label class="text-danger">C7</label>
+                    }
+                    else if (Model.C7 == 1)
+                    {
+                        <input type="checkbox" id="C7" name="C7" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C7" disabled checked />
+                        <label class="text-danger">C7</label>
+                    }
+                    else if (Model.C7 == 0)
+                    {
+                        <input type="checkbox" id="C7" name="C7" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C7</label>
+                    }
+                    <br />
+                    if (Model.C8 > 1)
+                    {
+                        <input type="checkbox" id="C8" name="C8" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C8" disabled />
+                        <label class="text-danger">C8</label>
+                    }
+                    else if (Model.C8 == 1)
+                    {
+                        <input type="checkbox" id="C8" name="C8" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C8" disabled checked />
+                        <label class="text-danger">C8</label>
+                    }
+                    else if (Model.C8 == 0)
+                    {
+                        <input type="checkbox" id="C8" name="C8" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C8</label>
+                    }
+                    if (Model.C9 > 1)
+                    {
+                        <input type="checkbox" id="C9" name="C9" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C9" disabled checked />
+                        <label class="text-danger">C9</label>
+                    }
+                    else if (Model.C9 == 1)
+                    {
+                        <input type="checkbox" id="C9" name="C9" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C9" disabled checked />
+                        <label class="text-danger">C9</label>
+                    }
+                    else if (Model.C9 == 0)
+                    {
+                        <input type="checkbox" id="C9" name="C9" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C9</label>
+                    }
+                    if (Model.C10 > 1)
+                    {
+                        <input type="checkbox" id="C10" name="C10" value="@Model.BusDetail.Price" hidden readonly checked />
+                        <input type="checkbox" id="C10" disabled checked />
+                        <label class="text-danger">C10</label>
+                    }
+                    else if (Model.C10 == 1)
+                    {
+                        <input type="checkbox" id="C10" name="C10" value=1 hidden checked readonly />
+                        <input type="checkbox" id="C10" disabled checked />
+                        <label class="text-danger">C10</label>
+                    }
+                    else if (Model.C10 == 0)
+                    {
+                        <input type="checkbox" id="C10" name="C10" value="@Model.BusDetail.Price" onClick="test(this);" class="limitThree" />
+                        <label class="text-success">C10</label>
+                    }
+
+                }
+            }
+
+
+
+            <br />
+            <br />
+            <div style="margin-left:70px">
+                <label id="totalcost" class="btn btn-success"> Total Amount : <span id="Totalcost"></span></label>
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="btn">Proceed to pay</button>
+        </form>
+    </div>
+
+
+    <script>
+        var total = 0;
+
+        function test(item) {
+            if (item.checked) {
+                total += parseInt(item.value);
+            } else {
+                total -= parseInt(item.value);
+            }
+            document.getElementById('Totalcost').innerHTML = total;
+
+        }
+
+    </script>
+
+    <div style="border: 1px solid black;float:right;  margin-left: 70px;width: 300px;margin-right: 80px; margin-top:30px;background-color:white;border-radius:13px;">
+        <div style="margin-right: -100px;">
+            <h3 class="text-center" style=" margin-right: 90px; margin-bottom: 30px;"><i class="fa fa-shopping-bag"></i> Travel Details</h3>
+            <div class="form-group col-md-9">
+                <label>Email</label>
+                <input type="text" name="Email" value="@ViewBag.UserName" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group col-md-9">
+                <label>Bus Name</label>
+                <input type="text" value="@ViewBag.BusName" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group col-md-9">
+                <label>From Location</label>
+                <input type="text" value="@ViewBag.FromLocation" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group col-md-9">
+                <label>To Location</label>
+                <input type="text" value="@ViewBag.ToLocation" class="form-control" readonly="readonly" />
+            </div>
+            <div class="form-group col-md-9">
+                <label>Journey Date</label>
+                <input type="text" value="@ViewBag.JourneyDate" class="form-control" readonly="readonly" />
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,9 @@
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\bin\Release\BusTicketReservationSystem.RepositoryContract.dll
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\bin\Release\BusTicketReservationSystem.RepositoryContract.pdb
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\bin\Release\BusTicketReservationSystem.DomainModel.dll
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\bin\Release\BusTicketReservationSystem.DomainModel.pdb
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\obj\Release\BusTicketReservationSystem.RepositoryContract.csproj.AssemblyReference.cache
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\obj\Release\BusTicketReservationSystem.RepositoryContract.csproj.CoreCompileInputs.cache
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\obj\Release\BusTicketReservationSystem.RepositoryContract.csproj.CopyComplete
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\obj\Release\BusTicketReservationSystem.RepositoryContract.dll
+C:\Users\924486\Downloads\Project (3)\Project\BusTicketReservationSystem\BusTicketReservationSystem.RepositoryContract\obj\Release\BusTicketReservationSystem.RepositoryContract.pdb

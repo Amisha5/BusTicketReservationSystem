@@ -1,0 +1,65 @@
+﻿@model BusTicketReservationSystem.DomainModel.Models.Route
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .backgraoundDesignEdit {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        background: url("../../images/Create_RouteBg.jpg");
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-size: cover;
+        /*    backdrop-filter: blur(3px);*/
+    }
+
+    .textWhite {
+        color: white;
+        font-size: 17px;
+    }
+
+    .textWhiteh3 {
+        color: white;
+        font-size: 20px;
+    }
+</style>
+<body class="container bodyAlign backgraoundDesignEdit">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <br />
+            <h3 class="textWhiteh3"><i class="fa fa-edit fa-x"></i> Edit Route Detail</h3>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.RouteId)
+            <div class="form-group">
+                @Html.LabelFor(model => model.FromLocation, htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FromLocation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FromLocation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ToLocation, htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ToLocation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ToLocation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-1">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+                <div>
+                    @Html.ActionLink("Back to List", "BusRoutes", "Route", new { @id = Model.RouteId, @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    }
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

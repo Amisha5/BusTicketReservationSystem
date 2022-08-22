@@ -1,0 +1,68 @@
+﻿.bookSeatDesign {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+    background: url(https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80%22);
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    /*    backdrop-filter: blur(3px);*/
+}
+
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+}
+
+    input[type="checkbox"]:checked {
+        background-color: red;
+    }
+
+label {
+    margin-bottom: 10px;
+}
+
+#border {
+    border: 1px solid black;
+    margin-left: 70px;
+    width: 300px;
+    float: left;
+    height: 545px;
+    margin-top: 30px;
+    background-color: white;
+}
+
+#A1, #A4, #A7, #A10, #B3, #B6, #B9, #C2, #C5, #C8 {
+    margin-left: 40px;
+}
+
+#A2, #A5, #A8, #B4, #B7, #B10, #C3, #C6, #C9 {
+    margin-left: 40px;
+}
+
+#A3, #A6, #A9, #B2, #B5, #B8, #C4, #C7, #C10 {
+    margin-left: 20px;
+}
+
+#C1 {
+    margin-left: 12px;
+}
+
+#B1 {
+    margin-left: 33px;
+}
+
+body {
+    margin-top: 50px;
+}
+
+#totalcost {
+    margin-top: -10px;
+    margin-left: -15px;
+}
+
+#btn {
+    width: 270px;
+    margin-left: 505px;
+    margin-top: 40px;
+}

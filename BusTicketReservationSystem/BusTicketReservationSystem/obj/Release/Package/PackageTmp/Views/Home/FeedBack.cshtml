@@ -1,0 +1,349 @@
+﻿@model BusTicketReservationSystem.DomainModel.Models.FeedBack
+
+@{
+    ViewBag.Title = "FeedBack";
+}
+
+<br />
+<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
+<link href="http://fonts.googleapis.com/css?family=Calibri:400,300,700" />
+<!-- Bootstrap library -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<link href="~/Content/Site.css" />
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        background: url(https://media.istockphoto.com/photos/woman-hand-showing-on-five-star-excellent-rating-picture-id1191634907?k=6&m=1191634907&s=612x612&w=0&h=ttNYvmGP0ueOXvvTb8WNR1bOK0SMfEN4hAhwOpNqKHA=);
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-size: cover;
+        /*            backdrop-filter: blur(3px);*/
+      
+    }
+
+    #card1 {
+        /*    position: fixed;*/
+        bottom: 5%;
+        left: 350px;
+        width: 45%;
+        background-color: white;
+        border-radius: 25px;
+    }
+
+    #card1 {
+        height: 100%;
+    }
+
+    .form-horizontal {
+        height: 80%;
+        margin-left: 10%;
+    }
+
+    fieldset,
+    label {
+        margin: 0;
+        padding: 0
+    }
+
+
+
+    h1 {
+        font-size: 1.5em;
+        margin: 10px
+    }
+
+    .rating {
+        border: none;
+    }
+
+    .myratings {
+        font-size: 85px;
+        color: green
+    }
+
+    .rating > [id^="star"] {
+        display: none;
+        margin-left: -70%;
+    }
+
+    .rating > label:before {
+        margin: 5px;
+        font-size: 2.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005";
+    }
+
+    .rating > .half:before {
+        content: "\f089";
+        position: absolute
+    }
+
+    .rating > label {
+        color: #ddd;
+        float: right
+    }
+
+    .rating > [id^="star"]:checked ~ label,
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: #FFD700
+    }
+
+        .rating > [id^="star"]:checked + label:hover,
+        .rating > [id^="star"]:checked ~ label:hover,
+        .rating > label:hover ~ [id^="star"]:checked ~ label,
+        .rating > [id^="star"]:checked ~ label:hover ~ label {
+            color: #FFED85
+        }
+
+    .reset-option {
+        display: none
+    }
+
+    .image-radio {
+        cursor: pointer;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        border: 3px solid transparent;
+        margin-bottom: 0;
+        outline: 0;
+    }
+
+        .image-radio input[type="radio"] {
+            display: none;
+        }
+
+    .image-radio-checked {
+        border-color: #4783B0;
+    }
+
+    .image-radio .glyphicon {
+        position: absolute;
+        color: #4A79A3;
+        background-color: #fff;
+        padding: 10px;
+        top: 0;
+        right: 0;
+    }
+
+    .image-radio-checked .glyphicon {
+        display: block !important;
+    }
+
+
+    .mt-1 {
+        margin-left: -90%;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-4 " id="card1">
+        <div class="form-horizontal">
+            <h2 class="text-center"><b>FeedBack</b></h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h4 class="text-center">
+                Your Feedback help us to improve!! <br />
+            </h4>
+            <div class="text-center">
+                <h1>
+                    <i class='fas fa-smile' style='font-size: 36px; color: #f46060 '></i>
+                    <i class='fas fa-grimace' style='font-size: 36px; color: #a273ea;'></i>
+                    <i class='far fa-handshake' style='font-size: 36px; color: #e8af67;'></i>
+                    <i class='fas fa-tired' style='font-size: 36px; color: #bf2863;'></i>
+                    <i class='fas fa-frown' style='font-size: 36px; color: #201c1c;'></i>
+                </h1>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="UserId" id="UserId" value="@ViewBag.UserID" class="form-control" />
+                    @*@Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @value= "@ViewBag.UserName" } })*@
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.BusId, "BusId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select asp-for="BusId" class="form-control" id="BusId" name="BusId" required>
+                        <option value="">Please Select Category</option>
+                        @foreach (var s in ViewBag.BusDetail)
+                        {
+                            <option value="@s.BusId">@s.BusName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", cols = "50", rows = "5" })
+                    @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HowSatisfied, "How Satisfied were you with our EasyGoing BusService?", htmlAttributes: new { @class = "control-label col-md-10" })
+                <br />
+                <div class="col-md-12">
+                    <br />
+                    <div class="col-md-1"></div>
+
+                    @Html.RadioButtonFor(model => model.HowSatisfied, "Excellent", htmlAttributes: new { id = "Excellent" })
+                    <label for="Excellent"> Excellent</label>
+
+                    @Html.RadioButtonFor(model => model.HowSatisfied, "Good", new { id = "Good" })
+                    <label for="Good">Good</label>
+
+                    @Html.RadioButtonFor(model => model.HowSatisfied, "Neutral", new { id = "Neutral" })
+                    <label for="Neutral">Neutral</label>
+
+                    @Html.RadioButtonFor(model => model.HowSatisfied, "Poor", new { id = "Poor" })
+                    <label for="Poor">Poor</label>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.HowSatisfied, "Will you recommand us to Friends?", htmlAttributes: new { @class = "control-label col-md-8" })
+
+                <div class="col-md-10">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-4 col-sm-2 col-md-1 nopad text-center">
+                        <label class="image-radio">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl5DKFxcjQVp_Yju7Yznd8orvFPeetTikm2A&usqp=CAU" style="width:100px">
+                            <input type="radio" name="IsLiked" value="Like" />
+                            <i class="glyphicon glyphicon-ok hidden"></i>
+                        </label>
+
+                    </div>
+                    <div class=" nopad text-center">
+                        <label class="image-radio">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx0ORyreNAbR7a5b2_1kdrhlFmzSmvgbLF0g&usqp=CAU" style="width:100px" />
+                            <input type="radio" name="IsLiked" value="Dislike" />
+                            <i class="glyphicon glyphicon-ok hidden"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="container form-group">
+
+                @Html.LabelFor(model => model.HowSatisfied, "Rate Us", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <div class="col-md-1"></div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <div class="card-body text-center">
+                                @*<span class="myratings">4.5</span>*@
+
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="Rating" value="5" />
+                                    <label class="full" for="star5" title="Awesome - 5 stars">
+                                    </label> <input type="radio" id="star4half" name="Rating" value="4.5" />
+                                    <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="Rating" value="4" />
+                                    <label class="full" for="star4" title="Pretty good - 4 stars">
+                                    </label> <input type="radio" id="star3half" name="Rating" value="3.5" />
+                                    <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="Rating" value="3" />
+                                    <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="Rating" value="2.5" />
+                                    <label class="half" for="star2half" title="Kinda bad - 2.5 stars">
+                                    </label> <input type="radio" id="star2" name="Rating" value="2" />
+                                    <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="Rating" value="1.5" />
+                                    <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="Rating" value="1" />
+                                    <label class="full" for="star1" title="Sucks big time - 1 star">
+                                    </label> <input type="radio" id="starhalf" name="Rating" value="0.5" />
+                                    <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                    <input type="radio" class="reset-option" name="Rating" value="reset" />
+                                </fieldset>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="container d-flex justify-content-center mt-200">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="stars">
+                                <form action="">
+                                <input class="star star-5" id="star-5" type="radio" name="rating" value="5"/>
+                                <label class="star star-5" for="star-5"></label>
+                                <input class="star star-4" id="star-4" type="radio" name="rating" />
+                                <label class="star star-4" for="star-4"></label>
+                                <input class="star star-3" id="star-3" type="radio" name="rating" />
+                                <label class="star star-3" for="star-3"></label>
+                                <input class="star star-2" id="star-2" type="radio" name="rating" />
+                                <label class="star star-2" for="star-2"></label>
+                                <input class="star star-1" id="star-1" type="radio" name="rating" />
+                                <label class="star star-1" for="star-1"></label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-1"></div>
+                    <input type="submit" value="Submit" class="btn btn-success btn-block col-md-6"  />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    $(document).ready(function () {
+        // add/remove checked class
+        $(".image-radio").each(function () {
+            if ($(this).find('input[type="radio"]').first().attr("checked")) {
+                $(this).addClass('image-radio-checked');
+            } else {
+                $(this).removeClass('image-radio-checked');
+            }
+        });
+
+        // sync the input state
+        $(".image-radio").on("click", function (e) {
+            $(".image-radio").removeClass('image-radio-checked');
+            $(this).addClass('image-radio-checked');
+            var $radio = $(this).find('input[type="radio"]');
+            $radio.prop("checked", !$radio.prop("checked"));
+
+            e.preventDefault();
+        });
+    });
+
+    $(document).ready(function () {
+
+        $("input[type='radio']").click(function () {
+            var sim = $("input[type='radio']:checked").val();
+            //alert(sim);
+            if (sim < 3) { $('.myratings').css('color', 'red'); $(".myratings").text(sim); } else { $('.myratings').css('color', 'green'); $(".myratings").text(sim); }
+        });
+    });
+
+</script>

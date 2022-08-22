@@ -1,0 +1,86 @@
+﻿@model BusTicketReservationSystem.DomainModel.Models.BusDetail
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .backgraoundDesignEditBus 
+    {
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        background: url(https://besthqwallpapers.com/img/original/86775/volvo-9800-dd-double-decker-passenger-big-bus-travel-by-bus-new-buses.jpg);
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-size: cover;
+        /*
+                backdrop-filter: blur(3px);*/
+    }
+
+   
+    .textWhiteh3 {
+        color: black;
+        font-size: 20px;
+        font-weight:bold;
+    }
+</style>
+<body class="container bodyAlign backgraoundDesignEditBus">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal"><br />
+                                     <div class="col-md-5" style="border:2px solid white;background-color:white;">
+                                         <h4 class="textWhiteh3"><i class="fa fa-edit fa-x"></i> Edit BusDetail</h4>
+                                         <hr />
+                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                         @Html.HiddenFor(model => model.BusId)
+                                         <div class="form-group">
+                                             @Html.LabelFor(model => model.BusName, htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                                             <div class="col-md-10">
+                                                 @Html.EditorFor(model => model.BusName, new { htmlAttributes = new { @class = "form-control" } })
+                                                 @Html.ValidationMessageFor(model => model.BusName, "", new { @class = "text-danger" })
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                                             <div class="col-md-10">
+                                                 @Html.EnumDropDownListFor(model => model.Category, htmlAttributes: new { @class = "form-control" })
+                                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                                             <div class="col-md-10">
+                                                 @Html.EnumDropDownListFor(model => model.Capacity, htmlAttributes: new { @class = "form-control" })
+                                                 @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                                             <div class="col-md-10">
+                                                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             @Html.LabelFor(model => model.RouteId, "RouteId", htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                                             <div class="col-md-10">
+                                                 @Html.EditorFor(model => model.RouteId, new { htmlAttributes = new { @class = "form-control" } })
+                                                 @Html.ValidationMessageFor(model => model.RouteId, "", new { @class = "text-danger" })
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <div class="col-md-2"></div>
+                                             <div class="col-md-4">
+                                                 <input type="submit" value="Save" class="btn btn-success" />
+                                             </div>
+                                             <div class="col-md-2">
+                                                 <a class="btn btn-danger" href="~/BusDetail/GetBusesById/@Model.RouteId">Back to List</a>
+                                             </div>
+                                         </div>
+                                     </div>
+         </div>
+    }
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BusTicketReservationSystem.DomainModel.Models.BusDetail>
+
+@{
+    ViewBag.Title = "GetBusesById";
+}
+<link rel="stylesheet" href="~/Content/BusRouteStyle.css" />
+<style>
+    .busById{
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 50px;
+        /*  background: url(https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVzJTIwdHJhdmVsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60);*/
+        background: url(https://wallpapercave.com/wp/wp2120744.jpg);
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-size: cover;
+        /*            backdrop-filter: blur(3px);*/
+    }
+</style>
+<body class="bodyAlign busById">
+    <br />
+    <div class="container">
+        <br />
+        <h2>Available Buses based on your selected route!!! </h2>
+        @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+        {
+            <p>
+                @*@Html.ActionLink("Create New", "Create", new { id = @ViewBag.RouteId })*@
+                <a href="~/BusDetail/Create/@ViewBag.RouteId" class="btn btn-primary">Create New</a>
+            </p>
+        }
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="column">
+                    <div class="card  element">
+                        <div class="card-header">
+                            <b> @Html.DisplayNameFor(model => model.BusName)</b> <label class="nameStyle">: @item.BusName</label>
+                        </div>
+                        <br />
+                        <b> @Html.DisplayNameFor(model => model.Category) :</b>
+                        @Html.DisplayFor(modelItem => item.Category)
+                        <br />
+                        <b>
+                            @Html.DisplayNameFor(model => model.Capacity) :
+                        </b>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                        <br />
+                        <b>
+                            @Html.DisplayNameFor(model => model.Price) :
+                        </b>
+                        @Html.DisplayFor(modelItem => item.Price)
+                        <br />
+                        <b>
+                            @Html.DisplayNameFor(model => model.Trip.JourneyDate) :
+                        </b>
+                        @item.Trip.JourneyDate.ToString("dd/MM/yyyy")
+                        <br />
+                        <br />
+                        <a href="~/BusDetail/BookSeat/@item.BusId" class="btn btn-success align-items-center bookSeatDesign">Book Seat</a>
+                        <br />
+                        @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                        {
+                            <div class="card-footer">
+                                <a href="~/BusDetail/Edit/@item.BusId" class="btn btn-primary align-items-center editRoute">Edit</a>
+                                <a href="~/BusDetail/Delete/@item.BusId" class="btn btn-danger align-items-center deleteRoute">Delete</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            <br />
+        </div>
+    </div>
+</body>

@@ -1,0 +1,27 @@
+﻿
+
+
+img {
+    height: 100px;
+    width: 17%;
+     position: relative;
+    animation: myfirst 5s 2;
+    animation-direction: normal;
+    animation: MovingBus 4s infinite;
+}
+
+@keyframes MovingBus {
+    0% {
+        left: 20px;
+        top: 0px;
+    }
+
+    100% {
+        left: 375px;
+        top: 0px;
+    }
+    /* 50%  { left: 200px; top: 200px;}
+       75%  { left: 0px; top: 200px;}
+       100% { left: 0px; top: 0px;} */
+}
+

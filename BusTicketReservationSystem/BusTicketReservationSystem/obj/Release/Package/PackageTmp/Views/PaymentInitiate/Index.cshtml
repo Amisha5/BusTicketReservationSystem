@@ -1,0 +1,80 @@
+﻿@model BusTicketReservationSystem.DomainModel.Models.PaymentInitiateModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .paymentBody {
+        background: url(https://seancooperwriter.com/wp-content/uploads/2019/04/istockphoto-486937322-612x612.jpg);
+        background-repeat: no-repeat;
+        object-fit: cover;
+        background-size: cover;
+        /*    backdrop-filter: blur(3px);*/
+    }
+    .divDesign
+    {
+        margin-left:30%;
+        margin-top:10%;
+    }
+    .divH1
+    {
+        margin-left:16%;
+    }
+</style>
+<body class="bodyAlign container paymentBody">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="divDesign">
+        <div class="form-horizontal col-md-6" style="background-color:white;">
+            <h2 class="divH1">Fill Payment Details</h2>
+          <br />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    <input type="text" name="Amount" id="Amount" value="@ViewBag.Total" class="form-control" readonly />
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-5"></div>
+                <div class="col-md-6">
+                    <input type="submit" value="Confirm" class="btn btn-default btn-success" />
+                </div>
+                @*<div>
+                   <a href="~/"></a>
+                </div>*@
+            </div>
+
+        </div></div>
+        }
+
+        <div>
+
+        </div>
+
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

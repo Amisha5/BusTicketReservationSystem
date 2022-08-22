@@ -1,0 +1,78 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.bodyAlign {
+    margin-top: 50px;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 200px;
+    height: 130px;
+    perspective: 1000px;
+    padding-top:20px;
+    border-radius:12px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+}
+
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+    border-radius: 12px;
+
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+}
+
+.flip-card-front {
+    background-color: #FFEE58;
+    padding-top: 50px;
+    font-size: large;
+    font-family: 'Kalam', cursive;
+    color: black;
+    border-radius: 12px;
+}
+
+.flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    font-size: 2em;
+    padding-bottom: 25px;
+    transform: rotateY(180deg);
+    border-radius: 12px;
+}
+
+h1 {
+    padding-top: 15px;
+    font-size: 22px;
+    font-family: 'Kalam', cursive;
+}
+#Book {
+    border-radius: 12px;
+    font-family: sans-serif;
+    width:95%;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+    #Book:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        font-family: 'Kalam', cursive;
+    }

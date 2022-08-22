@@ -1,0 +1,143 @@
+﻿@model BusTicketReservationSystem.DomainModel.Models.BusDetail
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/flip.css" />
+    <style>
+        .table {
+            width: 80%;
+            background-color: white;
+        }
+
+            .table th {
+                background-color: #77b9fa;
+            }
+
+        #not {
+            visibility: hidden;
+        }
+
+
+        .backgraoundDesignCreateBus {
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 50px;
+            background: url(../../images/BusBg.jpg);
+            background-repeat: no-repeat;
+            object-fit: cover;
+            background-size: cover;
+        }
+
+
+
+        .textWhiteh3 {
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="container bodyAlign backgraoundDesignCreateBus">
+    <div class="row">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal col-md-6">
+                <br /><br />
+                <h4 class="createBus textWhiteh3"><i class="fa fa-user"></i> Create New Bus</h4>
+                <hr />
+
+                <div style="border:2px solid white;background-color:white;" class="col-md-8">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group col-md-12">
+                        <i class="fas fa-address-book"></i>
+                        @Html.LabelFor(model => model.BusName, htmlAttributes: new { @class = "control-label textWhite" })
+                        @Html.EditorFor(model => model.BusName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BusName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-12">
+                        <i class=" fa fa-rupee fa-1x"></i>
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label textWhite" })
+
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <i class=" fa fa-list-alt"></i>
+                        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label textWhite" })
+
+                        @Html.EnumDropDownListFor(model => model.Category, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <i class="far fa-calendar-alt fa-1x"></i>
+                        @Html.LabelFor(model => model.Trip.JourneyDate, htmlAttributes: new { @class = "control-label textWhite" })
+                        <input type="datetime-local" name="Trip.JourneyDate" id="Trip.JourneyDate" class="form-control" />
+
+                        @Html.ValidationMessageFor(model => model.Trip.JourneyDate, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <i class=" fas fa-chart-bar"></i>
+                        @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label textWhite" })
+
+                        @Html.EnumDropDownListFor(model => model.Capacity, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div id="not" class="form-group">
+                        @Html.LabelFor(model => model.RouteId, "RouteId", htmlAttributes: new { @class = "control-label col-md-2 textWhite" })
+                        <div class="col-md-10">
+                            <input type="text" value="@ViewBag.RouteId" class="form-control" name="RouteId" />
+                            @Html.ValidationMessageFor(model => model.RouteId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-danger" href="~/BusDetail/GetBusesById/@ViewBag.RouteId">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-md-offset-1 col-md-5 bodyAlign">
+            <h4 class="createBus textWhiteh3"> <i class=" fas fa-chart-bar"></i> Bus Capacity Chart</h4>
+            <hr />
+            <table class="table table-hover table-bordered ">
+                <tr>
+                    <th>Bus Capacity Type</th>
+                    <th>Seats</th>
+                </tr>
+                <tr>
+                    <td>MaxLoaded</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td>SemiLoaded</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Loaded</td>
+                    <td>20</td>
+                </tr>
+            </table>
+        </div>
+        <br />
+
+    </div>
+</body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

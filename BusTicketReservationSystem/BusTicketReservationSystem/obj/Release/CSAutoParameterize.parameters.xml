@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Conn-Web.config Connection String" description="Conn Connection String used in web.config by the application to access the database." defaultValue="Data Source=btrs.database.windows.net;Initial Catalog=BusTicketReservationSystem;User ID=amishapatidar98;Password=Maladhari123@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\924486\\Downloads\\Project\ \(3\)\\Project\\BusTicketReservationSystem\\BusTicketReservationSystem\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Conn']/@connectionString" />
+  </parameter>
+</parameters>
