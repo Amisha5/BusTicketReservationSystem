@@ -8,7 +8,7 @@ namespace BusTicketReservationSystem
     public static class Globals
     {
       public static string apiUrl = "https://localhost:44350/api/";
-        public static string RazorPayKey = "rzp_live_FG7h8MES5iTU9R";
-        public static string RazorPaySecret = "djJ8yPC2YGhjlPZW3Y5La3XU";
+        public static string RazorPayKey = "xyz"; //give your razorePayKey
+        public static string RazorPaySecret = "xyz"; //your razorPaySecret value
     }
 }

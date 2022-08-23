@@ -27,11 +27,11 @@ namespace BusTicketReservationSystem
                 role.Name = "SuperAdmin";
                 roleManager.Create(role);
                 var user = new ApplicationUser();
-                user.UserName = "Amisha";
-                user.Email = "ami@easygoing.com";
+                user.UserName = "xyz";
+                user.Email = "xyz@easygoing.com";
                 user.UserRole = "SuperAdmin";
 
-                string userPWD = "Longhorn@12";
+                string userPWD = "xyz@123";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
